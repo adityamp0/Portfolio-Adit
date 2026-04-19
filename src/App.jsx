@@ -56,10 +56,13 @@ function App() {
 
   // Reset scroll to top when section changes (using reliable window scroll)
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    const timer = setTimeout(() => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }, 50);
+    return () => clearTimeout(timer);
   }, [activeSection]);
 
   const toggleTheme = () => {
