@@ -206,7 +206,7 @@
   text-align: left;
 }
 
-body {
+body, html {
   font-family: 'Quicksand', sans-serif;
   background-color: var(--bg-color);
   color: var(--text-main);
@@ -215,6 +215,7 @@ body {
   transition: background-color 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  width: 100%;
 }
 
 a {
@@ -250,10 +251,30 @@ main {
   border-left: 1px solid var(--border-color); /* Subtle separation from sidebar */
 }
 
+main {
+  flex: 1;
+  margin-left: var(--sidebar-width);
+  padding: 5rem 8rem;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  border-left: 1px solid var(--border-color);
+  overflow-x: hidden;
+}
+
 @media (max-width: 1024px) {
   main {
     margin-left: 0;
-    padding: 6rem 1.5rem 4rem;
+    padding: 6rem 2rem 4rem;
+    border-left: none;
+  }
+}
+
+@media (max-width: 480px) {
+  main {
+    padding: 5rem 1rem 3rem;
   }
 }
 
@@ -274,18 +295,30 @@ main {
   position: fixed;
   top: 1.25rem;
   right: 1.25rem;
-  z-index: 1001;
+  z-index: 1100;
   background: var(--card-bg);
   border: 1px solid var(--border-color);
   color: var(--text-main);
-  width: 42px;
-  height: 42px;
-  border-radius: 10px;
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+@media (max-width: 1024px) {
+  .mobile-toggle {
+    display: flex;
+  }
+}
+
+.mobile-toggle:hover {
+  border-color: var(--sky-neon);
+  box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
+  transform: scale(1.05);
 }
 
 .mobile-toggle:hover {
@@ -689,6 +722,13 @@ main {
   position: relative;
   padding-left: 2.5rem;
   margin-bottom: 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 2.25rem;
+    padding-left: 1.75rem;
+  }
 }
 
 .section-title::before {
