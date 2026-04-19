@@ -54,6 +54,14 @@ function App() {
   const [theme, setTheme] = useState('dark');
   const [activeSection, setActiveSection] = useState('#home');
 
+  // Reset scroll to top when section changes
+  useEffect(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  }, [activeSection]);
+
   const toggleTheme = () => {
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
