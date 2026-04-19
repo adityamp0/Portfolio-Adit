@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Sidebar from './components/Sidebar';
 import About from './components/About';
 import SelectedWorks from './components/SelectedWorks';
@@ -53,13 +53,16 @@ const CustomCursor = () => {
 function App() {
   const [theme, setTheme] = useState('dark');
   const [activeSection, setActiveSection] = useState('#home');
+  const mainRef = useRef(null);
 
-  // Reset scroll to top when section changes
+  // Reset scroll to top when section changes (targeting the main scroll container)
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (mainRef.current) {
+      mainRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   }, [activeSection]);
 
   const toggleTheme = () => {
@@ -101,7 +104,7 @@ function App() {
         activeSection={activeSection} 
         setActiveSection={setActiveSection} 
       />
-      <main className="main-content-tabbed">
+      <main className="main-content-tabbed" ref={mainRef}>
         <div 
           key={activeSection} 
           className="section-transition-wrapper"

@@ -225,10 +225,8 @@ body, html {
   transition: background-color 0.4s ease, color 0.4s ease;
   -webkit-font-smoothing: antialiased;
   width: 100%;
-  overflow-x: hidden;
-  overflow-y: auto; /* Root scrolling only */
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
+  height: 100%;
+  overflow: hidden; /* Lock root viewport */
   position: relative;
 }
 
@@ -250,7 +248,9 @@ img {
 /* Layout Core */
 .app-container {
   display: flex;
-  min-height: 100vh;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   position: relative;
 }
 
@@ -259,13 +259,16 @@ main {
   margin-left: var(--sidebar-width);
   padding: 5rem 8rem;
   transition: margin-left 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  min-height: 100vh;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
   display: flex;
   flex-direction: column;
   position: relative;
   background: var(--bg-color);
   border-left: 1px solid var(--border-color);
-  overflow: visible !important;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
 }
 
 @media (max-width: 1024px) {
