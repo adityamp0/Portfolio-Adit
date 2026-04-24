@@ -59,37 +59,51 @@ const worksData = [
   }
 ];
 
-const SelectedWorks = () => {
+const SelectedWorks = ({ t }) => {
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
   return (
     <section id="work" className="section container">
       <div className="section-header">
         <span className="section-number">03</span>
         <div>
-          <h2 className="section-title">Selected Works</h2>
-          <span className="section-subtitle">Exhibiting Technical Craftsmanship</span>
+          <h2 className="section-title">{t.title}</h2>
+          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
         </div>
       </div>
 
       <div className="works-grid">
         {worksData.map((work) => (
-          <div className="work-card" key={work.id}>
+          <div className="work-card reveal" key={work.id}>
             <a href={work.link} target="_blank" rel="noopener noreferrer">
               <div className="work-image">
-                <img src={work.image} alt={work.title} />
+                <img 
+                  src={work.image} 
+                  alt={work.title} 
+                  loading="lazy" 
+                  decoding="async"
+                />
               </div>
             </a>
-            <div className="work-meta">
-              <div>
-                <h3 className="work-title">{work.title}</h3>
-                <p className="work-description">{work.description}</p>
+            <div className="work-meta" style={{ flexDirection: isMobile ? 'column-reverse' : 'row', gap: '1rem', alignItems: 'flex-start', justifyContent: 'space-between', display: 'flex' }}>
+              <div style={{ flex: 1 }}>
+                <h3 className="work-title" style={{ fontSize: isMobile ? '1.25rem' : '1.5rem' }}>{work.title}</h3>
+                <p className="work-description" style={{ fontSize: isMobile ? '0.85rem' : '0.95rem' }}>{work.description}</p>
                 
                 <ul className="work-details">
                   {work.highlights.map((highlight, idx) => (
-                    <li key={idx}>{highlight}</li>
+                    <li key={idx} style={{ fontSize: isMobile ? '0.75rem' : '0.8rem' }}>{highlight}</li>
                   ))}
                 </ul>
               </div>
-              <span className="work-tags" style={{ alignSelf: 'flex-start' }}>{work.category}</span>
+              <span className="work-tags" style={{ alignSelf: 'flex-start', whiteSpace: 'nowrap' }}>{work.category}</span>
             </div>
             <a href={work.link} target="_blank" rel="noopener noreferrer" className="cert-link" style={{ marginTop: '1rem' }}>
               View Case Study <span>→</span>

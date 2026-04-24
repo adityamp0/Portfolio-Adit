@@ -12,19 +12,19 @@ import {
   X
 } from 'lucide-react';
 
-const Sidebar = ({ toggleTheme, theme, activeSection, setActiveSection }) => {
+const Sidebar = ({ toggleTheme, theme, activeSection, setActiveSection, isProductivity, toggleProductivity, lang, toggleLang, t }) => {
   const [isOpen, setIsOpen] = useState(false);
   const currentYear = new Date().getFullYear();
 
   const toggleSidebar = () => setIsOpen(!isOpen);
 
   const navItems = [
-    { name: 'Home', icon: <Home size={18} />, link: '#home' },
-    { name: 'Journey', icon: <Award size={18} />, link: '#journey' },
-    { name: 'Projects', icon: <Folder size={18} />, link: '#work' },
-    { name: 'Certifications', icon: <Award size={18} />, link: '#certifications' },
-    { name: 'Skill', icon: <BarChart3 size={18} />, link: '#skills' },
-    { name: 'Contact', icon: <Mail size={18} />, link: '#contact' },
+    { name: t.home, icon: <Home size={18} />, link: '#home' },
+    { name: t.journey, icon: <Award size={18} />, link: '#journey' },
+    { name: t.work, icon: <Folder size={18} />, link: '#work' },
+    { name: t.certs, icon: <Award size={18} />, link: '#certifications' },
+    { name: t.skills, icon: <BarChart3 size={18} />, link: '#skills' },
+    { name: t.contact, icon: <Mail size={18} />, link: '#contact' },
   ];
 
   const handleNavClick = (link) => {
@@ -58,7 +58,13 @@ const Sidebar = ({ toggleTheme, theme, activeSection, setActiveSection }) => {
             borderRadius: '50%',
             overflow: 'hidden'
           }}>
-            <img src="https://avatars.githubusercontent.com/u/100006466?v=4" alt="Aditya Maulana" style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} />
+            <img 
+              src="https://avatars.githubusercontent.com/u/100006466?v=4" 
+              alt="Aditya Maulana" 
+              style={{ width: '100%', height: '100%', borderRadius: '50%', objectFit: 'cover' }} 
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
           <h2 className="profile-name" style={{ fontSize: '1.1rem', fontWeight: '700', letterSpacing: '-0.02em', display: 'flex', alignItems: 'center', gap: '0.4rem' }}>
@@ -103,11 +109,80 @@ const Sidebar = ({ toggleTheme, theme, activeSection, setActiveSection }) => {
             ))}
           </div>
 
-          <div className="sidebar-footer-row" style={{ marginBottom: '1rem' }}>
-            <div className="theme-toggle-minimal" onClick={toggleTheme}>
-              <div className="mini-knob">
-                {theme === 'dark' ? '☀️' : '🌙'}
+          <div className="sidebar-footer-row" style={{ 
+            marginBottom: '1rem', 
+            gap: '0.5rem', 
+            display: 'flex', 
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            flexWrap: 'wrap'
+          }}>
+            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center', flex: '1 1 auto' }}>
+              {/* Language Toggle */}
+              <div 
+                onClick={toggleLang}
+                style={{ 
+                  cursor: 'pointer', 
+                  fontSize: '0.7rem', 
+                  fontWeight: '800', 
+                  color: 'var(--text-main)',
+                  background: 'rgba(255, 255, 255, 0.05)',
+                  padding: '6px 10px',
+                  borderRadius: '6px',
+                  border: '1px solid var(--border-color)',
+                  transition: 'all 0.2s ease'
+                }}
+                title="Change Language"
+              >
+                {lang === 'en' ? 'EN' : 'ID'}
               </div>
+
+              {/* Theme Toggle */}
+              <div 
+                className="theme-toggle-minimal" 
+                onClick={toggleTheme} 
+                style={{ 
+                  width: '40px', 
+                  height: '28px',
+                  background: 'var(--border-color)',
+                  borderRadius: '14px',
+                  position: 'relative',
+                  cursor: 'pointer'
+                }}
+              >
+                <div className="mini-knob" style={{
+                  width: '22px',
+                  height: '22px',
+                  top: '3px',
+                  left: theme === 'dark' ? '3px' : '15px'
+                }}>
+                  {theme === 'dark' ? '☀️' : '🌙'}
+                </div>
+              </div>
+            </div>
+
+            {/* Productivity Mode Toggle - Full width on very small screens */}
+            <div 
+              className={`theme-toggle-minimal ${isProductivity ? 'active' : ''}`} 
+              onClick={toggleProductivity}
+              title="Productivity Mode"
+              style={{ 
+                flex: '1 1 100%', 
+                marginTop: '0.5rem',
+                minHeight: '34px', 
+                background: isProductivity ? 'var(--sky-neon)' : 'rgba(255, 255, 255, 0.03)', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center', 
+                borderRadius: '8px', 
+                color: isProductivity ? '#000' : 'var(--text-muted)', 
+                fontSize: '0.7rem', 
+                fontWeight: '700',
+                border: '1px solid var(--border-color)',
+                transition: 'all 0.3s ease'
+              }}
+            >
+              {isProductivity ? 'MINIMAL' : 'NEON INTERFACE'}
             </div>
           </div>
 

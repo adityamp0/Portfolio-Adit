@@ -1,16 +1,81 @@
-# React + Vite
+# 🌌 Sky Neon Portfolio - Aditya
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+![Status](https://img.shields.io/badge/Status-Active-brightgreen)
+![Version](https://img.shields.io/badge/Version-1.0.0-blue)
+![React](https://img.shields.io/badge/React-19-blue?logo=react)
+![Vite](https://img.shields.io/badge/Vite-8-purple?logo=vite)
 
-Currently, two official plugins are available:
+**Portfolio-Adit** adalah aplikasi portofolio Single Page Application (SPA) modern yang dibangun dengan **React 19** dan **Vite**. Menampilkan desain futuristik dengan estetika "Sky Neon", portofolio ini dirancang untuk memberikan pengalaman pengguna yang imersif dan interaktif.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## ✨ Fitur Unggulan
 
-## React Compiler
+*   **Cyber-Neon Aesthetic**: Desain gelap yang elegan dengan aksen biru langit (Sky Blue) dan efek glow neon yang futuristik.
+*   **Custom Interactive Cursor**: Menggunakan kursor "Cyber-Crosshair" kustom yang merespons elemen interaktif.
+*   **Light/Dark Mode**: Perpindahan tema yang mulus antara mode gelap (Cyber-Dark) dan mode terang (Professional-Light).
+*   **Dynamic Background**: Dekorasi latar belakang berupa grid neon dan animasi halus yang menambah kedalaman visual.
+*   **Responsive Architecture**: Tata letak yang fleksibel dan optimal mulai dari perangkat mobile hingga desktop layar lebar.
+*   **Section Terintegrasi**:
+    *   **Hero**: Introduksi yang berdampak besar.
+    *   **About**: Informasi mendalam tentang profil profesional.
+    *   **Academic Journey**: Timeline perjalanan akademik dengan representasi visual.
+    *   **Technical Repertoire**: Klasifikasi keahlian teknis.
+    *   **Selected Works**: Showcase proyek terpilih dengan kartu interaktif.
+    *   **Certificates**: Dokumentasi pencapaian dan sertifikasi.
+    *   **Contact**: Form kontak yang fungsional dan estetis.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🛠️ Teknologi yang Digunakan
 
-## Expanding the ESLint configuration
+*   **Core**: React 19, JavaScript (ES6+).
+*   **Build Tool**: Vite 8.
+*   **Styling**: Vanilla CSS (Modern Variables, Flexbox, CSS Grid).
+*   **Icons**: Lucide React.
+*   **Animations**: CSS Keyframes & Web Transitions.
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🚀 Cara Menjalankan Project
+
+Ikuti langkah-langkah berikut untuk menjalankan project di lingkungan lokal Anda:
+
+1.  **Clone Repository**:
+    ```bash
+    git clone https://github.com/adityamp0/Portfolio-Adit.git
+    cd Portfolio-Adit
+    ```
+
+2.  **Instalasi Dependensi**:
+    ```bash
+    npm install
+    ```
+
+3.  **Menjalankan Server Pengembangan**:
+    ```bash
+    npm run dev
+    ```
+    Aplikasi akan berjalan di `http://localhost:5173`.
+
+4.  **Build untuk Produksi**:
+    ```bash
+    npm run build
+    ```
+
+## 📂 Struktur Folder
+
+```text
+/Portfolio-Adit
+├── /documentation   <-- Dokumentasi detail (Folder Kustom)
+├── /public          <-- Aset statis terbuka
+├── /src             <-- Source code utama
+│   ├── /assets      <-- Gambar dan ikon lokal
+│   ├── /components  <-- Komponen UI modular
+│   ├── App.jsx      <-- Komponen utama & router sederhana
+│   ├── main.jsx     <-- Entry point React
+│   └── index.css    <-- Sistem desain & styling global
+├── index.html       <-- Template HTML utama
+└── package.json     <-- Konfigurasi project & dependensi
+```
+
+## 📝 Detail Lebih Lanjut
+Untuk dokumentasi lebih mendalam mengenai arsitektur kode, sistem desain, dan panduan kontribusi, silakan lihat folder `documentation/`.
+
+---
+
+Dibuat dengan ❤️ oleh [Aditya Maulana Pamungkas](https://github.com/adityamp0)

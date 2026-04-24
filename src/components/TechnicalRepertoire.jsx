@@ -1,7 +1,7 @@
 import React from 'react';
 import { Brain, Code2, Database, Cpu, Command } from 'lucide-react';
 
-const TechnicalRepertoire = () => {
+const TechnicalRepertoire = ({ t }) => {
   const repertoire = [
     {
       title: 'Machine Learning',
@@ -43,14 +43,14 @@ const TechnicalRepertoire = () => {
       <div className="section-header">
         <span className="section-number">05</span>
         <div>
-          <h2 className="section-title">Technical Expertise</h2>
-          <span className="section-subtitle">Deep Dive into Modern Stack</span>
+          <h2 className="section-title">{t.title}</h2>
+          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
         </div>
       </div>
 
       <div className="repertoire-grid">
         {repertoire.map((cat, i) => (
-          <div key={i} className="repertoire-card">
+          <div key={i} className="repertoire-card reveal">
             <div className="repertoire-card-header">
               <div className="repertoire-icon-box">
                 {cat.icon}

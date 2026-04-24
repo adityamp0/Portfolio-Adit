@@ -1,7 +1,7 @@
 import React from 'react';
 import { BookOpen, Award, Calendar, ExternalLink } from 'lucide-react';
 
-const AcademicJourney = () => {
+const AcademicJourney = ({ t }) => {
   const journeys = [
     {
       institution: 'Universitas Gunadarma',
@@ -26,8 +26,8 @@ const AcademicJourney = () => {
       <div className="section-header">
         <span className="section-number">02</span>
         <div>
-          <h2 className="section-title">Academic Journey</h2>
-          <span className="section-subtitle">Chronicles of Knowledge Acquisition</span>
+          <h2 className="section-title">{t.title}</h2>
+          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
         </div>
       </div>
 
@@ -40,6 +40,8 @@ const AcademicJourney = () => {
                   src={item.logo}
                   alt={item.institution}
                   className="journey-logo"
+                  loading="lazy"
+                  decoding="async"
                   onError={(e) => {
                     e.target.style.display = 'none';
                     e.target.parentElement.innerHTML = '<div style="font-size: 10px; font-weight: bold; color: var(--sky-neon)">DEV</div>';

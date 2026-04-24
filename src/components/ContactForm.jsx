@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Send } from 'lucide-react';
 
-const ContactForm = () => {
+const ContactForm = ({ t }) => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [status, setStatus] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,19 +21,19 @@ const ContactForm = () => {
       <div className="section-header">
         <span className="section-number">06</span>
         <div>
-          <h2 className="section-title">Get In Touch</h2>
-          <span className="section-subtitle">Initiate Conversation Sequence</span>
+          <h2 className="section-title">{t.title}</h2>
+          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
         </div>
       </div>
 
       <div style={{ maxWidth: '800px' }}>
         <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
           <div className="form-group">
-            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Caller ID</label>
+            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.name}</label>
             <input 
               type="text" 
               name="name"
-              placeholder="YOUR NAME"
+              placeholder="John Doe"
               value={formData.name}
               onChange={handleChange}
               required
@@ -52,11 +53,11 @@ const ContactForm = () => {
           </div>
 
           <div className="form-group">
-            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Return Signal</label>
+            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.email}</label>
             <input 
               type="email" 
               name="email"
-              placeholder="YOUR@EMAIL.COM"
+              placeholder="hello@world.com"
               value={formData.email}
               onChange={handleChange}
               required
@@ -76,10 +77,10 @@ const ContactForm = () => {
           </div>
 
           <div className="form-group">
-            <label style={{ display: 'block', fontSize: '0.75rem', color: 'var(--text-muted)', marginBottom: '0.5rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>Transmission Encrypted</label>
+            <label style={{ display: 'block', fontSize: '0.75rem', fontWeight: '700', color: 'var(--text-muted)', marginBottom: '0.75rem', textTransform: 'uppercase', letterSpacing: '0.1em' }}>{t.message}</label>
             <textarea 
               name="message"
-              placeholder="DESCRIBE YOUR PROJECT OR INQUIRY..."
+              placeholder="..."
               value={formData.message}
               onChange={handleChange}
               required
@@ -100,8 +101,29 @@ const ContactForm = () => {
             ></textarea>
           </div>
 
-          <button type="submit" className="btn-primary" style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.75rem' }}>
-            Execute Transmission <Send size={18} />
+          <button 
+            type="submit" 
+            className="btn-primary" 
+            disabled={status === 'sending'}
+            style={{ 
+              padding: '1rem 2rem', 
+              borderRadius: '8px', 
+              background: status === 'sending' ? 'rgba(0, 243, 255, 0.1)' : 'transparent', 
+              color: 'var(--sky-neon)', 
+              fontWeight: '800', 
+              border: '2px solid var(--sky-neon)', 
+              display: 'flex', 
+              alignItems: 'center', 
+              justifyContent: 'center', 
+              gap: '0.75rem', 
+              width: '100%', 
+              transition: 'all 0.3s ease',
+              backdropFilter: 'blur(5px)',
+              cursor: 'pointer',
+              boxShadow: status === 'sending' ? '0 0 20px var(--sky-neon)' : 'none'
+            }}
+          >
+            {status === 'sending' ? t.sending : t.send} <Send size={18} />
           </button>
         </form>
       </div>

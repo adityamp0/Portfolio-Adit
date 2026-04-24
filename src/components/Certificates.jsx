@@ -117,8 +117,16 @@ const certsData = [
 
 const categories = ['Machine Learning', 'Web Developer', 'Programming Language'];
 
-const Certificates = () => {
+const Certificates = ({ t }) => {
   const [activeTab, setActiveTab] = useState('Machine Learning');
+  const [isMobile, setIsMobile] = useState(false);
+
+  React.useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const filteredCerts = certsData.filter(cert => cert.category === activeTab);
 
@@ -127,8 +135,8 @@ const Certificates = () => {
       <div className="section-header">
         <span className="section-number">04</span>
         <div>
-          <h2 className="section-title">Professional Credentials</h2>
-          <span className="section-subtitle">Validated Milestones of Growth</span>
+          <h2 className="section-title">{t.title}</h2>
+          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
         </div>
       </div>
 
@@ -141,13 +149,13 @@ const Certificates = () => {
               onClick={() => setActiveTab(cat)}
               className={`folder-tab ${activeTab === cat ? 'active' : ''}`}
               style={{
-                padding: '0.75rem 1.5rem',
+                padding: isMobile ? '0.6rem 1rem' : '0.75rem 1.5rem',
                 border: '1px solid var(--border-color)',
                 borderBottom: activeTab === cat ? '1px solid var(--bg-color)' : '1px solid var(--border-color)',
                 background: activeTab === cat ? 'var(--bg-color)' : 'rgba(255,255,255,0.03)',
                 borderRadius: '12px 12px 0 0',
                 cursor: 'pointer',
-                fontSize: '0.85rem',
+                fontSize: isMobile ? '0.75rem' : '0.85rem',
                 fontWeight: '600',
                 display: 'flex',
                 alignItems: 'center',
@@ -166,14 +174,14 @@ const Certificates = () => {
         <div className="folder-content" style={{
           background: '#050505',
           border: '1px solid var(--border-color)',
-          borderRadius: '0 12px 12px 12px',
-          padding: '2.5rem',
+          borderRadius: isMobile ? '0 0 12px 12px' : '0 12px 12px 12px',
+          padding: isMobile ? '1.5rem 1rem' : '2.5rem',
           boxShadow: '0 0 30px rgba(0, 243, 255, 0.05)',
           minHeight: '400px'
         }}>
           <div className="certs-grid">
             {filteredCerts.map((cert) => (
-              <div className={`cert-card ${cert.featured ? 'featured' : ''}`} key={cert.id} style={{ height: '100%' }}>
+              <div key={cert.id} className={`cert-card ${cert.featured ? 'featured' : ''} reveal`} style={{ height: '100%' }}>
                 <div className="cert-header">
                   <div className="cert-icon-wrapper">
                     {cert.icon}
