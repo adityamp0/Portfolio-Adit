@@ -4,7 +4,7 @@ import { Brain, Code2, Database, Cpu, Command } from 'lucide-react';
 const TechnicalRepertoire = ({ t }) => {
   const repertoire = [
     {
-      title: 'Machine Learning',
+      title: 'Machine Learning/Data',
       icon: <Brain size={24} />,
       skills: [
         { name: 'PyTorch', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg' },

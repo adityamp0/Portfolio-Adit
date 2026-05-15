@@ -4,7 +4,7 @@ import { Trophy, Award, Brain, BarChart3, Bot, Laptop, Code, Binary, FileCode, C
 const certsData = [
   {
     id: 1,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'Best Capstone Project',
     provider: 'Achievement Award',
     description: 'Customer Segmentation for Personalized Retail Marketing',
@@ -15,7 +15,7 @@ const certsData = [
   },
   {
     id: 2,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'Building Machine Learning Systems',
     provider: 'Dicoding Indonesia',
     description: 'Advanced development cycle from data collection to model deployment.',
@@ -25,7 +25,7 @@ const certsData = [
   },
   {
     id: 3,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'Fundamental Deep Learning',
     provider: 'Dicoding Indonesia',
     description: 'Neural Networks implementation using modern frameworks.',
@@ -35,7 +35,7 @@ const certsData = [
   },
   {
     id: 4,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'Machine Learning for Beginners',
     provider: 'Dicoding Indonesia',
     description: 'Supervised and unsupervised techniques for classification.',
@@ -45,7 +45,7 @@ const certsData = [
   },
   {
     id: 5,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'AI Basics',
     provider: 'Dicoding Indonesia',
     description: 'Introduction to Artificial Intelligence concepts and industry roles.',
@@ -95,7 +95,7 @@ const certsData = [
   },
   {
     id: 10,
-    category: 'Machine Learning',
+    category: 'Machine Learning/Data',
     title: 'Data Analysis Fundamentals',
     provider: 'Dicoding Indonesia',
     description: 'Python-based EDA, cleaning, and visualization techniques.',
@@ -112,13 +112,55 @@ const certsData = [
     date: 'Feb 2026',
     link: 'https://drive.google.com/file/d/1vUjvPha54st81HkVpVLSWdsFkzNxVEXX/view',
     icon: <Laptop2 size={20} />
+  },
+  {
+    id: 12,
+    category: 'Web Developer',
+    title: 'Learn Web Programming Basics',
+    provider: 'Dicoding Indonesia',
+    description: 'Foundational HTML and CSS for building structured web pages.',
+    date: 'Feb 2026',
+    link: 'https://drive.google.com/file/d/1Zg8Pxrhs7eZwLcFbtD1AEXqhXLoyFWL7/view?usp=drive_link',
+    icon: <Laptop size={20} />
+  },
+  {
+    id: 13,
+    category: 'Web Developer',
+    title: 'Learn JavaScript Programming Basics',
+    provider: 'Dicoding Indonesia',
+    description: 'Fundamental JavaScript concepts and logical programming.',
+    date: 'Mar 2026',
+    link: 'https://drive.google.com/file/d/1b2TU77RBtgdihQqamPNv2z8glWhuIP7n/view?usp=drive_link',
+    icon: <Code size={20} />
+  },
+  {
+    id: 14,
+    category: 'Web Developer',
+    title: 'Learn to Build Front-End Web for Beginners',
+    provider: 'Dicoding Indonesia',
+    description: 'Interactive web development with DOM manipulation.',
+    date: 'Apr 2026',
+    link: 'https://drive.google.com/file/d/1wozBdp4paMbXKAMN39I7mLAPQdRhVPKS/view?usp=drive_link',
+    icon: <FileCode size={20} />
+  },
+  {
+    id: 15,
+    category: 'Web Developer',
+    title: 'Learn to Build Web Apps with React',
+    provider: 'Dicoding Indonesia',
+    description: 'Modern React development with state management and components.',
+    date: 'May 2026',
+    link: 'https://drive.google.com/file/d/1s-dxuOE3p_KpgWVqCTdz_n4HjrgRDzKg/view?usp=drive_link',
+    icon: <Binary size={20} />,
+    featured: true
   }
+
 ];
 
-const categories = ['Machine Learning', 'Web Developer', 'Programming Language'];
+const categories = ['Machine Learning/Data', 'Web Developer', 'Programming Language'];
 
 const Certificates = ({ t }) => {
-  const [activeTab, setActiveTab] = useState('Machine Learning');
+  const [activeTab, setActiveTab] = useState('Machine Learning/Data');
   const [isMobile, setIsMobile] = useState(false);
 
   React.useEffect(() => {
