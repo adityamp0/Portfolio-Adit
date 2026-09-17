@@ -22,3 +22,14 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local planning and legacy documentation
+/Redesign.md
+/projek.md
+/DESIGN.md
+/documentation/PROJECT_DETAILS.md
+
+# Local environment secrets
+.env
+.env.*
+!.env.example

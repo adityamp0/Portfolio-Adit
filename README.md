@@ -115,7 +115,6 @@ Portfolio-Adit/
 |-- vite.config.js
 |-- eslint.config.js
 |-- vercel.json
-|-- Redesign.md                   # Arahan desain editorial
 `-- README.md
 ```
 
@@ -203,12 +202,6 @@ Pada pemeriksaan redesign editorial:
 - Target tautan keempat proyek, pemuatan gambar, jumlah konten, tombol Escape pada menu mobile, validasi form, dan encoding draf email diperiksa.
 
 Pemeriksaan browser tersebut dilakukan sebagai validasi implementasi. Repository belum menyediakan script `test` atau suite Playwright yang tersimpan.
-
-## Dokumentasi terkait
-
-[Redesign.md](Redesign.md) berisi arahan desain editorial. `projek.md` dan `documentation/PROJECT_DETAILS.md` mendokumentasikan versi sebelumnya dan masih memuat penjelasan tema Sky Neon. Gunakan README ini dan source code untuk memahami implementasi terkini.
-
-`DESIGN.md` menjelaskan proyek ShieldID yang berbeda, sehingga tidak menjadi acuan tampilan portofolio ini.
 
 ## Pemilik dan lisensi
 
