@@ -34,7 +34,7 @@ export const translations = {
         "interest": "Interest",
         "passion": "Passion"
       },
-      "education": "Computer Science Student"
+      "education": "Computer Science"
     },
     "journey": {
       "title": "Always learning.",
