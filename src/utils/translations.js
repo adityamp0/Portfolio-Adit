@@ -19,7 +19,8 @@ export const translations = {
       "location": "Informatics / Indonesia",
       "description": "I build systems that learn from data, and interfaces that make them useful.",
       "btnWork": "View selected work",
-      "btnContact": "Get in touch"
+      "btnContact": "Get in touch",
+      "btnCv": "View CV"
     },
     "about": {
       "title": "Behind the work.",
@@ -108,7 +109,8 @@ export const translations = {
       "location": "Informatika / Indonesia",
       "description": "Saya membangun sistem yang belajar dari data, dan antarmuka yang membuatnya mudah digunakan.",
       "btnWork": "Lihat karya terpilih",
-      "btnContact": "Hubungi saya"
+      "btnContact": "Hubungi saya",
+      "btnCv": "Lihat CV"
     },
     "about": {
       "title": "Di balik karya.",

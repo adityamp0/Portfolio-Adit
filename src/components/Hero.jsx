@@ -1,4 +1,4 @@
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, ArrowUpRight } from 'lucide-react';
 export default function Hero({ t, setActiveSection, playIntro }) {
   return <section className="hero" aria-labelledby="hero-name">
     <div className="hero-kicker"><span className="eyebrow">{t.kicker}</span><span className="eyebrow">01 / INDEX</span></div>
@@ -9,6 +9,7 @@ export default function Hero({ t, setActiveSection, playIntro }) {
         <div className="hero-actions">
           <button className="text-link" onClick={() => setActiveSection('#work')}>{t.btnWork}<ArrowRight size={17} /></button>
           <button className="text-link secondary-link" onClick={() => setActiveSection('#contact')}>{t.btnContact}<ArrowRight size={17} /></button>
+          <a className="text-link secondary-link" href="https://drive.google.com/file/d/1PONf-BSoVahvDugw-eLvLhLmR4Wf-9_S/view?usp=sharing" target="_blank" rel="noopener noreferrer">{t.btnCv}<ArrowUpRight size={17} aria-hidden="true" /></a>
         </div>
       </div>
     </div>
