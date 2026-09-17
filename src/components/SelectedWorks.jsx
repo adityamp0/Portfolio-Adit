@@ -1,5 +1,6 @@
-import React from 'react';
-
+import { useLayoutEffect, useRef } from 'react';
+import { ArrowUpRight } from 'lucide-react';
+import SectionHeader from './SectionHeader';
 const worksData = [
   {
     id: 1,
@@ -59,60 +60,57 @@ const worksData = [
   }
 ];
 
-const SelectedWorks = ({ t }) => {
-  const [isMobile, setIsMobile] = React.useState(false);
 
-  React.useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+export default function SelectedWorks({ t }) {
+  const sectionRef = useRef(null);
+  useLayoutEffect(() => {
+    if (!('IntersectionObserver' in window)) return;
+    const media = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (media.matches) return;
+    const items = [...sectionRef.current.querySelectorAll('.work-item')];
+    const reveal = (item) => {
+      if (!item.classList.contains('work-pending')) return;
+      item.classList.remove('work-pending');
+      item.classList.add('work-entered');
+      observer.unobserve(item);
+    };
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => { if (entry.isIntersecting) reveal(entry.target); });
+    }, { rootMargin: '100px 0px', threshold: 0 });
+    items.forEach(item => { item.classList.add('work-pending'); observer.observe(item); });
+    const onFocus = (event) => {
+      const item = event.target.closest('.work-item');
+      if (item) reveal(item);
+    };
+    const onMotionChange = () => {
+      if (media.matches) {
+        observer.disconnect();
+        items.forEach(item => item.classList.remove('work-pending', 'work-entered'));
+      }
+    };
+    const section = sectionRef.current;
+    section.addEventListener('focusin', onFocus);
+    media.addEventListener('change', onMotionChange);
+    return () => {
+      observer.disconnect();
+      section.removeEventListener('focusin', onFocus);
+      media.removeEventListener('change', onMotionChange);
+      items.forEach(item => item.classList.remove('work-pending', 'work-entered'));
+    };
   }, []);
-
-  return (
-    <section id="work" className="section container">
-      <div className="section-header">
-        <span className="section-number">03</span>
-        <div>
-          <h2 className="section-title">{t.title}</h2>
-          <span className="section-subtitle"><span className="typing-reveal">{t.subtitle}</span></span>
-        </div>
+  return <section ref={sectionRef} className="section">
+    <SectionHeader number="03" title={t.title} subtitle={t.subtitle} />
+    <div className="works-list">{worksData.map((work, index) => <article className={'work-item' + (index === 0 ? ' work-featured' : '')} key={work.id}>
+      <div className="work-heading"><span className="eyebrow">{String(index + 1).padStart(2, '0')}</span><h2>{work.title}</h2><span className="eyebrow work-category">{work.category}</span></div>
+      <a className="work-image" href={work.link} target="_blank" rel="noopener noreferrer" aria-label={t.repository + ': ' + work.title}>
+        <img src={work.image} alt={work.title} loading="lazy" decoding="async" width="800" height="450" />
+        <span className="image-caption">{work.category}<ArrowUpRight size={18} /></span>
+      </a>
+      <div className="work-description"><p>{work.description}</p>
+        <ul className="work-highlights">{work.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul>
+        <p className="eyebrow work-stack">{work.tags.replaceAll(String.fromCharCode(7), '/').replaceAll('\u2022', '/')}</p>
+        <a className="text-link" href={work.link} target="_blank" rel="noopener noreferrer">{t.repository}<ArrowUpRight size={17} /></a>
       </div>
-
-      <div className="works-grid">
-        {worksData.map((work) => (
-          <div className="work-card reveal" key={work.id}>
-            <a href={work.link} target="_blank" rel="noopener noreferrer">
-              <div className="work-image">
-                <img 
-                  src={work.image} 
-                  alt={work.title} 
-                  loading="lazy" 
-                  decoding="async"
-                />
-              </div>
-            </a>
-            <div className="work-meta" style={{ flexDirection: isMobile ? 'column-reverse' : 'row', gap: '1rem', alignItems: 'flex-start', justifyContent: 'space-between', display: 'flex' }}>
-              <div style={{ flex: 1 }}>
-                <h3 className="work-title" style={{ fontSize: isMobile ? '1.25rem' : '1.5rem' }}>{work.title}</h3>
-                <p className="work-description" style={{ fontSize: isMobile ? '0.85rem' : '0.95rem' }}>{work.description}</p>
-                
-                <ul className="work-details">
-                  {work.highlights.map((highlight, idx) => (
-                    <li key={idx} style={{ fontSize: isMobile ? '0.75rem' : '0.8rem' }}>{highlight}</li>
-                  ))}
-                </ul>
-              </div>
-              <span className="work-tags" style={{ alignSelf: 'flex-start', whiteSpace: 'nowrap' }}>{work.category}</span>
-            </div>
-            <a href={work.link} target="_blank" rel="noopener noreferrer" className="cert-link" style={{ marginTop: '1rem' }}>
-              View Case Study <span>→</span>
-            </a>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-};
-
-export default SelectedWorks;
+    </article>)}</div>
+  </section>;
+}

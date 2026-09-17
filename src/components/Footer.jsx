@@ -2,7 +2,6 @@ import React from 'react';
 import { Mail, ArrowUpRight } from 'lucide-react';
 
 const Footer = () => {
-  const email = "ampaditya55@gmail.com";
 
   return (
     <footer className="footer-section container" style={{ borderTop: '1px solid var(--border-color)', marginTop: '4rem', paddingTop: '4rem' }}>
