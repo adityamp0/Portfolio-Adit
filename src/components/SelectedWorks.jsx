@@ -7,7 +7,7 @@ const worksData = [
     title: 'Brazilian E-Commerce Analysis',
     category: 'Data Analysis',
     description: 'End-to-end analysis on Olist dataset to uncover sales performance, seasonality, and product trends.',
-    tags: 'Python • Pandas',
+    techStack: ['Python', 'Pandas', 'NumPy', 'Matplotlib', 'Seaborn', 'Streamlit', 'Jupyter'],
     highlights: [
       'RFM Customer Segmentation analysis',
       'Geospatial analysis of orders and revenue',
@@ -21,7 +21,7 @@ const worksData = [
     title: 'Dog & Cat Classification',
     category: 'Machine Learning',
     description: 'Image classification project using computer vision techniques to distinguish between cats and dogs.',
-    tags: 'TensorFlow • CNN',
+    techStack: ['Python', 'TensorFlow', 'Keras', 'OpenCV', 'NumPy', 'CNN', 'Jupyter'],
     highlights: [
       'CNN Architecture with Keras',
       'Image augmentation for better accuracy',
@@ -35,7 +35,7 @@ const worksData = [
     title: 'RFM Segmentation Dashboard',
     category: 'Data Science',
     description: 'Interactive dashboard for analyzing customer behavior using Recency, Frequency, and Monetary metrics.',
-    tags: 'Scikit-Learn • Streamlit',
+    techStack: ['Python', 'Scikit-Learn', 'Streamlit', 'Pandas', 'Matplotlib', 'K-Means', 'Plotly'],
     highlights: [
       'K-Means clustering implementation',
       'Customer lifetime value prediction',
@@ -49,7 +49,7 @@ const worksData = [
     title: 'Duolingo Sentiment Analysis',
     category: 'NLP',
     description: 'Analyzing user sentiments from Duolingo feedback using Natural Language Processing and WordCloud.',
-    tags: 'Python • NLP',
+    techStack: ['Python', 'NLTK', 'TextBlob', 'WordCloud', 'Pandas', 'Matplotlib', 'Jupyter'],
     highlights: [
       'Sentiment polarity classification',
       'Keyword extraction and WordCloud visualization',
@@ -57,6 +57,21 @@ const worksData = [
     ],
     image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=800',
     link: 'https://github.com/adityamp0/Project-Analisis-Sentimen'
+  },
+  {
+    id: 5,
+    title: 'Portfolio Website',
+    category: 'Web Development',
+    description: 'Personal portfolio website showcasing projects, skills, and achievements with modern design and responsive layout.',
+    techStack: ['React', 'Vite', 'JavaScript', 'CSS3', 'Lucide React', 'Vercel'],
+    highlights: [
+      'Dark/Light theme toggle with smooth transitions',
+      'Bilingual support (English & Indonesian)',
+      'Responsive design for all devices',
+      'Lazy loading and performance optimization'
+    ],
+    image: 'https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800',
+    link: 'https://github.com/adityamp0/Portfolio-Adit'
   }
 ];
 
@@ -106,11 +121,11 @@ export default function SelectedWorks({ t }) {
         <img src={work.image} alt={work.title} loading="lazy" decoding="async" width="800" height="450" />
         <span className="image-caption">{work.category}<ArrowUpRight size={18} /></span>
       </a>
-      <div className="work-description"><p>{work.description}</p>
-        <ul className="work-highlights">{work.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul>
-        <p className="eyebrow work-stack">{work.tags.replaceAll(String.fromCharCode(7), '/').replaceAll('\u2022', '/')}</p>
-        <a className="text-link" href={work.link} target="_blank" rel="noopener noreferrer">{t.repository}<ArrowUpRight size={17} /></a>
-      </div>
+       <div className="work-description"><p>{work.description}</p>
+         <ul className="work-highlights">{work.highlights.map(highlight => <li key={highlight}>{highlight}</li>)}</ul>
+         <p className="eyebrow work-stack">{work.techStack.join(' • ')}</p>
+         <a className="text-link" href={work.link} target="_blank" rel="noopener noreferrer">{t.repository}<ArrowUpRight size={17} /></a>
+       </div>
     </article>)}</div>
   </section>;
 }
